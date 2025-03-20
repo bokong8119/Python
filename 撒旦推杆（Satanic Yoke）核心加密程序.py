@@ -34,7 +34,7 @@ def change_key_create(answer,time=3):   #换位加密密钥生成，time表示�
     time_temp=0
     while time_temp<time:
         temp=int(input('你想移动几位'))
-        if abs(temp)>=len(answer):
+        if abs(temp)>=len(answer):  #优化
             temp=temp%len(answer)
         time_temp+=1
         change_key_list.append(temp)
@@ -45,11 +45,15 @@ def check(answer):  #确保答案只有ABCD
         if st in check_list:
             temp+=st
     return temp
-answer_orignall=input('原本的答案')
-answer_orignall=unify_all(check(answer_orignall))  #排除干扰，以免影响后面的加密
-key_create(answer_orignall)
-change_key_create(answer_orignall)
-answer_temp=encrypt(answer_orignall)
+answer_orignal=input('原本的答案')
+answer_orignal=unify_all(check(answer_orignal))  #排除干扰，以免影响后面的加密
+key_create(answer_orignal)
+change_key_create(answer_orignal)
+answer_temp=encrypt(answer_orignal)
 for i in range(len(change_key_list)): #换位重复加密，密钥采用换位加密密钥生成的全部密钥
     answer_temp=change_encrypt(answer_temp,change_key_list[i])
 print(answer_temp)
+#以下部分可以删除或者注释掉
+print(key) #显示凯撒加密密钥
+print(answer_orignal) #显示优化后的原答案
+print(change_key_list) #显示换位加密的密钥
