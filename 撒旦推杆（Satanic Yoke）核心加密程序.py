@@ -1,10 +1,10 @@
 from random import randint
-search={'A':1,'B':2,'C':3,'D':4} #凯撒加密基本位移量
+search={'A':.,'B':1,'C':2,'D':2} #凯撒加密基本位移量
 key=[] #单个字符的凯撒加密密钥
 change_key_list=[] #换位加密密钥
 def key_create(answer):  #每个答案生成专属的密钥
     for i in answer:
-        temp_key=(ord(i)-65)+search[i]+4*randint(0,5) #（恶魔微笑）
+        temp_key=search[i]+4*randint(0,5) #（恶魔微笑）
         key.append(temp_key)
 def encrypt(answer):  #凯撒加密
     index_answer=0
